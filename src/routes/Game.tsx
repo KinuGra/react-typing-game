@@ -1,26 +1,25 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Question } from "./../components/Question";
 import { Timer } from "./../components/Timer"
-import { EndModal } from "../components/EndModal";
-import { useNavigate } from "react-router-dom";
-
-// 問題リスト
-const questions = ["quite", "company", "increase", "This is a pen."];
+import { EndModal } from "./../components/EndModal";
+import { questions } from './../data/questions.js'; // 問題データの読み込み
+import { BackgroundImage } from "@mantine/core";
 
 export const Game = () => {
     const navigate = useNavigate();
-
     const [questionNum, setQuestionNum] = useState(
         Math.floor(Math.random() * questions.length)
     );
     const [inputKeys, setInputKeys] = useState<string[]>([]);
     const [correctLength, setCorrectLength] = useState<number>(0);
+    const [isActive, setIsActive] = useState<boolean>(true);
     const [showEndModal, setShowEndModal] = useState<boolean>(false);
 
     // キーボードからの入力
     useEffect(() => {
-        function handleKeyDown(event :KeyboardEvent) {
-            if(event.key === questions[questionNum][correctLength]) {
+        function handleKeyDown(event: KeyboardEvent) {
+            if (isActive && event.key === questions[questionNum][correctLength]) {
                 setInputKeys((prev) => [...prev, event.key]);
                 setCorrectLength((prev) => prev + 1);
             }
@@ -41,29 +40,30 @@ export const Game = () => {
     }
     // 正解なら次の問題へ
     useEffect(() => {
-        if(questions[questionNum].length === correctLength) {
+        if (questions[questionNum].length === correctLength) {
             handleLottery();
             setCorrectLength(0);
             setInputKeys(['']);
         }
     }, [correctLength])
 
-    /** ゲーム終了時の処理 */
+    /** ゲーム終了後、モーダルの表示後の処理 */
     function handleEnd() {
         setShowEndModal(false);
         navigate("/result");
     }
 
     // 残り時間を管理
-    const [time, setTime] = useState<number>(5);
+    const [time, setTime] = useState<number>(10);
     useEffect(() => {
         const timerId = setInterval(() => setTime((prev) => prev - 1), 1000);
 
         // 制限時間0による終了処理
-        if(time <= 0) {
+        if (time <= 0) {
             clearInterval(timerId);
             setShowEndModal(true); // 終了モーダル表示
             setTimeout(() => handleEnd(), 3000);
+            setIsActive(false);
         }
 
         /*
@@ -76,8 +76,11 @@ export const Game = () => {
 
     return (
         <>
+
             <Timer time={time} />
-            <Question question={questions[questionNum]} correctLength={correctLength} />
+            <BackgroundImage src="/restaurant.jpg">
+                <Question question={questions[questionNum]} correctLength={correctLength} />
+            </BackgroundImage>
             <EndModal showEndModal={showEndModal} />
 
             <div>
