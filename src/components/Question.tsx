@@ -3,7 +3,7 @@ export function Question({ question, correctLength } :{question :string, correct
         <>
             {question.split("").map((char, index) => (
                 <span style={{
-                    color: index < correctLength ? "green" : "black",
+                    color: index < correctLength ? "green" : "white",
                     fontWeight: index < correctLength ? "bold" : "normal",
                     fontSize: "50px",
                 }} key={index}>
