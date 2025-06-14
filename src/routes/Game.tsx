@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Question } from "./../components/Question";
 import { Timer } from "./../components/Timer"
-import { EndModal } from "../components/EndModal";
-import { useNavigate } from "react-router-dom";
-
-// 問題リスト
-const questions = ["quite", "company", "increase", "This is a pen."];
+import { EndModal } from "./../components/EndModal";
+import { questions } from './../data/questions.js'; // 問題データの読み込み
 
 export const Game = () => {
     const navigate = useNavigate();
-
     const [questionNum, setQuestionNum] = useState(
         Math.floor(Math.random() * questions.length)
     );

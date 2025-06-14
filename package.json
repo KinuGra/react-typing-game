@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mantine/core": "^8.1.0",
+    "@mantine/dates": "^8.1.0",
+    "@mantine/form": "^8.1.0",
+    "@mantine/hooks": "^8.1.0",
+    "@mantinex/mantine-logo": "^2.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
