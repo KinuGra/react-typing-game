@@ -10,13 +10,20 @@ export const Game = () => {
     );
 
     const [inputKeys, setInputKeys] = useState<string[]>([]);
-    let correctLength = 0;
+    const [correctLength, setCorrectLength] = useState<number>(0);
+
+    /** 問題の再抽選処理 */
+    const handleLottery = () => {
+        setQuestionNum(Math.floor(Math.random() * questions.length))
+    }
+
+    console.log(inputKeys, correctLength)
 
     useEffect(() => {
         function handleKeyDown(event :KeyboardEvent) {
             if(event.key === questions[questionNum][correctLength]) {
                 setInputKeys((prev) => [...prev, event.key]);
-                correctLength++;
+                setCorrectLength((prev) => prev + 1);
             }
         }
 
@@ -27,12 +34,25 @@ export const Game = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [])
+    }, [correctLength, questionNum]) // []のままではcorrectLengthが正常にカウントされない
+
+    useEffect(() => {
+        if(questions[questionNum].length === correctLength) {
+            handleLottery();
+            setCorrectLength(0);
+            setInputKeys(['']);
+        }
+    }, [correctLength])
 
     return (
         <>
             <Question question={questions[questionNum]} />
-            {inputKeys}
+            <div>
+                inputKeys : {inputKeys}
+            </div>
+            <div>
+                correctLength : {correctLength}, qlen : {questions[questionNum].length}
+            </div>
         </>
     );
 }
