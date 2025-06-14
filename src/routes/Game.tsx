@@ -46,12 +46,12 @@ export const Game = () => {
 
     return (
         <>
-            <Question question={questions[questionNum]} />
+            <Question question={questions[questionNum]} correctLength={correctLength} />
             <div>
                 inputKeys : {inputKeys}
             </div>
             <div>
-                correctLength : {correctLength}, qlen : {questions[questionNum].length}
+                correctLength : {correctLength}, questionLength : {questions[questionNum].length}
             </div>
         </>
     );
