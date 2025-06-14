@@ -1,11 +1,14 @@
 import React from 'react';
-import { Game } from './routes/Game'
+import { Routes, Route } from 'react-router-dom';
+import { Game } from './routes/Game';
+import Result from './routes/Result';
 
 function App() {
   return (
-    <>
-      <Game />
-    </>
+    <Routes>
+      <Route path="/game" element={<Game />} />
+      <Route path="/result" element={<Result />} />
+    </Routes>
   );
 }
 

@@ -6,7 +6,7 @@ export function Question({ question, correctLength } :{question :string, correct
                     color: index < correctLength ? "green" : "black",
                     fontWeight: index < correctLength ? "bold" : "normal",
                     fontSize: "50px",
-                }}>
+                }} key={index}>
                     {char}
                 </span>
             ))}
