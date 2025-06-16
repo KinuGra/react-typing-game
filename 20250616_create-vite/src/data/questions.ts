@@ -1,0 +1,1 @@
+export const questions :string[] = ["quite", "company", "increase", "This is a pen."];

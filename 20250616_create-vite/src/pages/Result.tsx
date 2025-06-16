@@ -1,3 +1,4 @@
+import { BackButton } from "../components/backButton";
 import { MantineTable } from "../components/MantineTable";
 
 const Result = () => {
@@ -10,6 +11,7 @@ const Result = () => {
         <>
             ダミーデータ
             <MantineTable elements={elements} />
+            <BackButton />
         </>
     )
 }

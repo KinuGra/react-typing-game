@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Question } from "./../components/Question";
 import { Timer } from "./../components/Timer"
 import { EndModal } from "./../components/EndModal";
-import { questions } from './../data/questions.js'; // 問題データの読み込み
+import { questions } from './../data/questions.ts'; // 問題データの読み込み
 import { BackgroundImage } from "@mantine/core";
 
 export const Game = () => {
@@ -61,9 +61,9 @@ export const Game = () => {
         // 制限時間0による終了処理
         if (time <= 0) {
             clearInterval(timerId);
+            setIsActive(false);
             setShowEndModal(true); // 終了モーダル表示
             setTimeout(() => handleEnd(), 3000);
-            setIsActive(false);
         }
 
         /*

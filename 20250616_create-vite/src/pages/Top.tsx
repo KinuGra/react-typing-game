@@ -1,5 +1,6 @@
 import { Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
+import './Top.css'
 
 function GradiendOrangeButton({ onClick } :{ onClick :any}) {
     return (
@@ -7,8 +8,15 @@ function GradiendOrangeButton({ onClick } :{ onClick :any}) {
             variant="gradient"
             gradient={{ from: 'orange', to: 'yellow', deg: 90 }}
             onClick={onClick}
+            styles={{
+                root: {
+                    fontSize: "20px",
+                }
+            }}
+            size="sm"
+            radius="lg"
         >
-            Gradient button
+            Game Start
         </Button>
     );
 }
@@ -17,7 +25,9 @@ export const Top = () => {
     const navigate = useNavigate();
     return (
         <>
-            <GradiendOrangeButton onClick={() => navigate("/game")} />
+            <div className='container'>
+                <GradiendOrangeButton onClick={() => navigate("/game")} />
+            </div>
         </>
     )
 }

@@ -1,1 +1,0 @@
-export const questions = ["quite", "company", "increase", "This is a pen."];
