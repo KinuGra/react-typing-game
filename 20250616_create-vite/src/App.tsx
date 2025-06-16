@@ -1,16 +1,11 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Game } from './routes/Game';
-import Result from './routes/Result';
-import { Top } from './routes/Top';
+import { AppRouter } from './routes/AppRouter';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Top />} />
-      <Route path="/game" element={<Game />} />
-      <Route path="/result" element={<Result />} />
-    </Routes>
+    <>
+      <AppRouter />
+    </>
   );
 }
 
