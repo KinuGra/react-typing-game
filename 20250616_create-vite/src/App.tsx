@@ -1,5 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
-import { AppRouter } from './routes/AppRouter';
+import { AppRouter } from './routes/router.tsx';
 
 function App() {
   return (
