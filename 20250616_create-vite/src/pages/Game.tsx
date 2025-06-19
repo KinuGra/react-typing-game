@@ -5,6 +5,8 @@ import { Timer } from "./../components/Timer"
 import { EndModal } from "./../components/EndModal";
 import { questions } from './../data/questions.ts'; // 問題データの読み込み
 import { BackgroundImage } from "@mantine/core";
+import './Top.css';
+import { WhiteCard } from "../components/WhiteCard.tsx";
 
 export const Game = () => {
     const navigate = useNavigate();
@@ -76,18 +78,21 @@ export const Game = () => {
 
     return (
         <>
+            <div className="bg-_pattern Rectangles" style={{height: "100vh", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center",}}>
+                <WhiteCard>
+                    <Timer time={time} />
+                        <div style={{backgroundColor :"#f4a460", textAlign: "center", borderRadius: "20px", padding: "20px"}}>
+                            <Question question={questions[questionNum]} correctLength={correctLength} />
+                        </div>
+                    <EndModal showEndModal={showEndModal} />
 
-            <Timer time={time} />
-            <BackgroundImage src="/restaurant.jpg">
-                <Question question={questions[questionNum]} correctLength={correctLength} />
-            </BackgroundImage>
-            <EndModal showEndModal={showEndModal} />
-
-            <div>
-                inputKeys : {inputKeys}
-            </div>
-            <div>
-                correctLength : {correctLength}, questionLength : {questions[questionNum].length}
+                    <div>
+                        inputKeys : {inputKeys}
+                    </div>
+                    <div>
+                        correctLength : {correctLength}, questionLength : {questions[questionNum].length}
+                    </div>
+                </WhiteCard>
             </div>
         </>
     );
