@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import './index.css'
 import App from './App';
 
 createRoot(
@@ -11,7 +12,9 @@ createRoot(
   <React.StrictMode>
     <MantineProvider>
       <BrowserRouter>
-        <App />
+        <div className="bg-_pattern Rectangles">
+          <App />
+        </div>
       </BrowserRouter>
     </MantineProvider>
   </React.StrictMode>
