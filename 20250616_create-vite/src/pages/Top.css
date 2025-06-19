@@ -4,3 +4,24 @@
     align-items: center;
     height: 100vh; /* ビューポートの高さ100% */
 }
+
+/*=============
+.bg_pattern
+==============*/
+
+.bg_pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffe9a7;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.Rectangles {
+    background-image: repeating-linear-gradient(45deg, #ffc107 25%, transparent 25%, transparent 75%, #ffc107 75%, #ffc107), repeating-linear-gradient(45deg, #ffc107 25%, #ffe9a7 25%, #ffe9a7 75%, #ffc107 75%, #ffc107);
+    background-position: 0 0, 20px 20px;
+    background-size: 40px 40px;
+}

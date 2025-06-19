@@ -12,7 +12,7 @@ createRoot(
   <React.StrictMode>
     <MantineProvider>
       <BrowserRouter>
-        <div className="bg-_pattern Rectangles">
+        <div>
           <App />
         </div>
       </BrowserRouter>

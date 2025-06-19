@@ -3,10 +3,9 @@ import './Top.css'
 import { WhiteCard } from '../components/WhiteCard';
 
 export const Top = () => {
-    const navigate = useNavigate();
     return (
         <>
-            <div className='container'>
+            <div className='container bg-_pattern Rectangles'>
                 <WhiteCard />
             </div>
         </>
