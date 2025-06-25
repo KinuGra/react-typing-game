@@ -32,7 +32,16 @@ export const LearnJS = () => {
 
     return (
         <>
-            <button onClick={handleClick}>ボタン</button>
+            <div style={styles}>
+                <button onClick={handleClick}>ボタン</button>
+            </div>
         </>
     )
+}
+
+const styles = {
+    display: "flex",
+    justifyContent: "center",
+    height: "100vh",
+    alignItems: "center",
 }

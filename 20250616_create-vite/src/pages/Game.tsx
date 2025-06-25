@@ -8,7 +8,7 @@ import { BackgroundImage } from "@mantine/core";
 import './Top.css';
 import { WhiteCard } from "../components/WhiteCard.tsx";
 
-export const Game = () => {
+export const Game = ({ handleChangeScore } : { handleChangeScore: (score: number) => void }) => {
     const navigate = useNavigate();
     const [questionNum, setQuestionNum] = useState(
         Math.floor(Math.random() * questions.length)
@@ -17,6 +17,7 @@ export const Game = () => {
     const [correctLength, setCorrectLength] = useState<number>(0);
     const [isActive, setIsActive] = useState<boolean>(true);
     const [showEndModal, setShowEndModal] = useState<boolean>(false);
+    const [score, setScore] = useState<number>(0);
 
     // キーボードからの入力
     useEffect(() => {
@@ -46,14 +47,9 @@ export const Game = () => {
             handleLottery();
             setCorrectLength(0);
             setInputKeys(['']);
+            setScore((prev) => prev + 100);
         }
     }, [correctLength])
-
-    /** ゲーム終了後、モーダルの表示後の処理 */
-    function handleEnd() {
-        setShowEndModal(false);
-        navigate("/result");
-    }
 
     // 残り時間を管理
     const [time, setTime] = useState<number>(10);
@@ -66,6 +62,7 @@ export const Game = () => {
             setIsActive(false);
             setShowEndModal(true); // 終了モーダル表示
             setTimeout(() => handleEnd(), 3000);
+            handleChangeScore(score);
         }
 
         /*
@@ -75,6 +72,12 @@ export const Game = () => {
         */
         return (() => clearInterval(timerId)) // アンマウント、再レンダリング
     }, [time])
+
+    /** ゲーム終了後、モーダルの表示後の処理 */
+    function handleEnd() {
+        setShowEndModal(false);
+        navigate("/result");
+    }
 
     return (
         <>
